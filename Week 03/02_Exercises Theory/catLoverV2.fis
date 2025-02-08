@@ -1,0 +1,41 @@
+[System]
+Name='catLoverV2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='miaows'
+Range=[0 10]
+NumMFs=2
+MF1='persistant':'trimf',[-3.80659945004583 2.19340054995417 5.19340054995417]
+MF2='intermittent':'trimf',[2.53345554537122 6.53345554537122 10.5334555453712]
+
+[Input2]
+Name='size'
+Range=[0 10]
+NumMFs=3
+MF1='small':'trimf',[-2.68744271310724 2.31255728689276 5.31255728689276]
+MF2='medium':'trimf',[3.22089825847846 5.22089825847846 8.44637946837763]
+MF3='large':'trimf',[6.10907424381302 9 12]
+
+[Output1]
+Name='amount'
+Range=[10 150]
+NumMFs=3
+MF1='a_bit':'trimf',[0 30 70]
+MF2='average':'trimf',[40 80 100]
+MF3='a_lot':'trimf',[90 140 160]
+
+[Rules]
+1 0, 3 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+0 3, 3 (1) : 1
