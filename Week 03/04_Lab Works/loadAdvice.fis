@@ -1,0 +1,42 @@
+[System]
+Name='loadAdvice'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=2
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='lsalary'
+Range=[0 100000]
+NumMFs=3
+MF1='low':'trapmf',[0 0 10000 40000]
+MF2='medium':'trapmf',[10000 30000 70000 100000]
+MF3='high':'trapmf',[60000 90000 100000 100000]
+
+[Input2]
+Name='lperiod'
+Range=[0 40]
+NumMFs=5
+MF1='very low':'trimf',[0 0 10]
+MF2='low':'trimf',[0 10 20]
+MF3='medium':'trimf',[10 20 30]
+MF4='high':'trimf',[20 30 40]
+MF5='very high':'trimf',[30 40 40]
+
+[Output1]
+Name='decision'
+Range=[0 100]
+NumMFs=3
+MF1='low':'trimf',[0 0 40]
+MF2='medium':'trapmf',[10 35 65 90]
+MF3='high':'trimf',[60 100 100]
+
+[Rules]
+3 5, 3 (1) : 1
+1 1, 1 (1) : 1
