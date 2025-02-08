@@ -1,0 +1,58 @@
+[System]
+Name='ICS Trapizoidal'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='sum'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Soil Moisture'
+Range=[0 800]
+NumMFs=3
+MF1='DRY':'trapmf',[-300 -33.33 95.4703832752613 300]
+MF2='MODERATE':'trapmf',[96.8641114982578 229.268292682927 534.494773519164 691.98606271777]
+MF3='WET':'trapmf',[500 750.522648083624 833.3 1100]
+
+[Input2]
+Name='Humidity'
+Range=[0 60]
+NumMFs=3
+MF1='LOW':'trapmf',[-22.5 -2.5 2.5 22.5]
+MF2='MODERATE':'trapmf',[7.5 27.5 32.5 52.5]
+MF3='HIGH':'trapmf',[37.5 57.5 62.5 82.5]
+
+[Input3]
+Name='Temperature'
+Range=[0 50]
+NumMFs=3
+MF1='LOW':'trapmf',[-18.75 -2.083 2.083 18.75]
+MF2='MODERATE':'trapmf',[6.25 22.92 27.08 43.75]
+MF3='HIGH':'trapmf',[31.25 47.92 52.08 68.75]
+
+[Output1]
+Name='Irrigation'
+Range=[0 100]
+NumMFs=3
+MF1='LOW':'trapmf',[-37.5 -4.167 4.167 37.5]
+MF2='MODERATE':'trapmf',[12.5 45.83 54.17 87.5]
+MF3='HIGH':'trapmf',[62.5 95.83 104.2 137.5]
+
+[Rules]
+1 1 0, 3 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 3 (1) : 1
+1 3 -2, 2 (1) : 1
+2 1 1, 2 (1) : 1
+2 -3 3, 3 (1) : 1
+2 -3 2, 2 (1) : 1
+2 2 1, 1 (1) : 1
+2 3 -3, 1 (1) : 1
+3 1 -3, 1 (1) : 1
+3 1 3, 2 (1) : 1
+3 -1 0, 1 (1) : 1
